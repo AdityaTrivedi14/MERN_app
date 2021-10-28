@@ -13,7 +13,7 @@ router.post("/register", (req, res) => {
   const { name, email, phone, password, cpassword } = req.body;
 
   if (!name || !email || !phone || !password || !cpassword) {
-    return res.status(422).json({ error: "Fill all the required fields" });
+    return res.status(422).json({ error: "Fill all the required field" });
   }
 
   User.findOne({ email: email })
