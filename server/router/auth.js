@@ -9,77 +9,90 @@ router.get("/", (req, res) => {
 });
 
 // Promises
-router.post("/register", (req, res) => {
-  const { name, email, phone, password, cpassword } = req.body;
-
-  if (!name || !email || !phone || !password || !cpassword) {
-    return res.status(422).json({ error: "Fill all the required field" });
-  }
-
-  User.findOne({ email: email })
-    .then((userExist) => {
-      if (userExist) {
-        return res.status(422).json({ error: "Email already exists" });
-      }
-
-      const user = new User({ name, email, phone, password, cpassword });
-
-      user
-        .save()
-        .then(() => {
-          res.status(201).json({ message: "User registered Successfully" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => res.status(500).json({ message: "Failed to register" }));
-});
-
-// Async Await
-// router.post("/register", async (req, res) => {
+// router.post("/register", (req, res) => {
 //   const { name, email, phone, password, cpassword } = req.body;
 
 //   if (!name || !email || !phone || !password || !cpassword) {
 //     return res.status(422).json({ error: "Fill all the required fields" });
 //   }
 
-//   try{
-//     const response = await User.findOne({ email: email })
-//         .then((userExist) => {
-//         if (userExist) {
-//             return res.status(422).json({ error: "Email already exists" });
-//         }
+//   User.findOne({ email: email })
+//     .then((userExist) => {
+//       if (userExist) {
+//         return res.status(422).json({ error: "Email already exists" });
+//       }
 
-//         const user = new User({ name, email, phone, password, cpassword });
+//       const user = new User({ name, email, phone, password, cpassword });
 
-//         user
-//             .save()
-//             .then(() => {
-//             res.status(201).json({ message: "User registered Successfully" });
-//             })
-//             .catch((err) => {
-//             console.log(err);
-//             });
+//       user
+//         .save()
+//         .then(() => {
+//           res.status(201).json({ message: "User registered Successfully" });
 //         })
-
-//   }catch(err){
-//     console.log(err);
-//   }
-
+//         .catch((err) => {
+//           console.log(err);
+//         });
+//     })
+//     .catch((err) => res.status(500).json({ message: "Failed to register" }));
 // });
 
-router.get("/about", (req, res) => {
-  res.send("Welcome to about page");
+// Async Await
+router.post("/register", async (req, res) => {
+  const { name, email, phone, password, cpassword } = req.body;
+
+  if (!name || !email || !phone || !password || !cpassword) {
+    return res.status(422).json({ error: "Fill all the required fields" });
+  }
+
+  try {
+    const userExist = await User.findOne({ email: email });
+
+    if (userExist) {
+      return res.status(422).json({ error: "Email already exists" });
+    } else if (password != cpassword) {
+      return res.status(422).json({ error: "Password didn't matched" });
+    } else {
+      const user = new User({ name, email, phone, password, cpassword });
+      await user.save();
+      res.status(201).json({ message: "User registered Successfully" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-router.get("/contact", (req, res) => {
-  res.send("Welcome to contact page");
+// login route
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    if (!email || !password) {
+      return res.status(422).json({ error: "Fill all the required fields" });
+    }
+
+    const userLogin = await User.findOne({ email: email });
+
+    if (!userLogin) {
+      res.status(400).json({ error: "email not found" });
+    } else {
+      res.json({ message: "user sign in successfully" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-router.get("/login", (req, res) => {
-  res.send("Welcome to login page");
-});
+// router.get("/about", (req, res) => {
+//   res.send("Welcome to about page");
+// });
+
+// router.get("/contact", (req, res) => {
+//   res.send("Welcome to contact page");
+// });
+
+// router.get("/login", (req, res) => {
+//   res.send("Welcome to login page");
+// });
 
 // router.get("/register", (req, res) => {
 //   res.send("Welcome to register page");
