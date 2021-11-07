@@ -99,20 +99,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// router.get("/about", (req, res) => {
-//   res.send("Welcome to about page");
-// });
-
-// router.get("/contact", (req, res) => {
-//   res.send("Welcome to contact page");
-// });
-
-// router.get("/login", (req, res) => {
-//   res.send("Welcome to login page");
-// });
-
-// router.get("/register", (req, res) => {
-//   res.send("Welcome to register page");
-// });
-
 module.exports = router;
