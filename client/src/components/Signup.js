@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Signup = () => {
   return (
     <section className="signup">
-      <div className="container mt-5">
+      <div className="container mt-5 text-center">
         <div className="signup-content">
           <div className="signup-form">
             <h2 className="form-title">Sign Up</h2>

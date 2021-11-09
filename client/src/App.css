@@ -1,3 +1,26 @@
+body {
+  background: #a8a8a8;
+}
 .logo {
   width: 120px;
+}
+.signup .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup-content {
+  height: 100%;
+  /* padding: 25px 50px; */
+  border-radius: 12px;
+  /* border: 3px solid #f5f5f5; */
+  box-shadow: 0px 8px 30px -8px rgba(0, 0, 0, 0.3);
+}
+.registeration-form input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #555555;
+}
+.form-button input {
+  border: 1px solid #313131;
 }
