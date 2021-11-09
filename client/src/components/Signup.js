@@ -71,7 +71,7 @@ const Signup = () => {
                 />
               </div>
 
-              <NavLink to="/login">
+              <NavLink to="/login" className="signup-link">
                 <span>Already have an account?</span>Sign in
               </NavLink>
             </form>
