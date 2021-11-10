@@ -6,14 +6,16 @@
 .logo {
   width: 120px;
 }
-.signup {
+.signup,
+.signin {
   width: 100%;
   height: calc(100vh - 90px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.signup-form {
+.signup-form,
+.signin-form {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.3);
@@ -44,7 +46,8 @@
   color: #fff;
   background: #000;
 }
-.signup-link {
+.signup-link,
+.signin-link {
   margin-top: 0;
   color: #303030;
   font-size: 14px;
