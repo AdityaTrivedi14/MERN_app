@@ -52,3 +52,28 @@
   color: #303030;
   font-size: 14px;
 }
+.contact-padding {
+  padding: 40px 10vw;
+}
+.contact-card,
+.contactForm-container {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 35px -10px rgba(0, 0, 0, 0.3);
+}
+.contact-content {
+  padding-left: 18px;
+}
+.contact-title {
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+}
+.contact-text {
+  color: #555555;
+  font-size: 12px;
+  /* word-wrap: break-word; */
+}
+textarea {
+  width: 100%;
+}
