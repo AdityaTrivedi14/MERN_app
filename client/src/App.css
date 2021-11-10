@@ -6,6 +6,8 @@
 .logo {
   width: 120px;
 }
+
+/* SignUp and Login Page CSS */
 .signup,
 .signin {
   width: 100%;
@@ -20,7 +22,9 @@
   border-radius: 12px;
   box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.3);
 }
-.form-title {
+.form-title,
+.contactForm-title {
+  font-weight: 600;
   font-size: 30px;
   color: #000;
   margin-bottom: 20px;
@@ -36,7 +40,8 @@
   border: none;
   border-bottom: 1px solid #555555;
 }
-.form-submit {
+.form-submit,
+.contactSubmit {
   font-size: 14px;
   margin-top: 8px;
   border-radius: 99999px;
@@ -52,17 +57,22 @@
   color: #303030;
   font-size: 14px;
 }
+
+/* Contact Page CSS */
 .contact-padding {
-  padding: 40px 10vw;
+  padding: 20px 10vw;
 }
 .contact-card,
 .contactForm-container {
-  padding: 20px;
+  padding: 15px 18px;
   border-radius: 12px;
   box-shadow: 0px 10px 35px -10px rgba(0, 0, 0, 0.3);
 }
 .contact-content {
   padding-left: 18px;
+}
+.contactForm-container {
+  padding: 18px 30px;
 }
 .contact-title {
   color: #000;
@@ -74,6 +84,26 @@
   font-size: 12px;
   /* word-wrap: break-word; */
 }
+.contactForm-title {
+  color: #303030;
+  margin-bottom: 10px;
+}
+.contactInput:first-child {
+  margin-right: 25px;
+}
+.contactInput,
+textarea {
+  margin-bottom: 15px;
+  /* border: 1px solid #a5a5a5; */
+  border: 1px solid #808080;
+  padding: 5px 15px;
+  outline: none;
+}
 textarea {
   width: 100%;
+}
+.contactSubmit {
+  /* background: #149edf; */
+  border-radius: 0;
+  margin: 15px 0;
 }

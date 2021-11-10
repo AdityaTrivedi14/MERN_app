@@ -59,18 +59,18 @@ const Contact = () => {
                       type="text"
                       id="contactForm-name"
                       className="contactForm-name contactInput"
-                      placeholder="Your Name"
+                      placeholder="Name"
                       required="true"
                     />
                     <input
                       type="email"
                       id="contactForm-email"
                       className="contactForm-email contactInput"
-                      placeholder="Your Email"
+                      placeholder="Email"
                       required="true"
                     />
                   </div>
-                  <div className="contactMessage mt-4">
+                  <div className="contactMessage mt-1">
                     <textarea
                       name="text-field form-message"
                       id="contactMessage"
@@ -80,7 +80,7 @@ const Contact = () => {
                     ></textarea>
                   </div>
                   <div className="contactButton">
-                    <button type="submit" className="button contactSubmit-btn">
+                    <button type="submit" className="button contactSubmit">
                       Send Message
                     </button>
                   </div>
