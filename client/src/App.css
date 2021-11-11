@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  width: 100%;
+  height: 100vh;
+}
 .logo {
   width: 120px;
 }
@@ -72,7 +76,8 @@
   padding: 20px 10vw;
 }
 .contact-card,
-.contactForm-container {
+.contactForm-container,
+.profileCard {
   padding: 15px 18px;
   border-radius: 12px;
   box-shadow: 0px 10px 35px -10px rgba(0, 0, 0, 0.3);
@@ -115,4 +120,15 @@ textarea {
   /* background: #149edf; */
   border-radius: 0;
   margin: 15px 0;
+}
+
+/* About Us Page */
+.profileCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.profilePic {
+  height: 250px;
 }
