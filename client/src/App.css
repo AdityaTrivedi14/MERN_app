@@ -132,3 +132,6 @@ textarea {
 .profilePic {
   height: 250px;
 }
+.fade:not(.show) {
+  display: none;
+}
