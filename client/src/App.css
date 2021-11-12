@@ -135,3 +135,75 @@ textarea {
 .fade:not(.show) {
   display: none;
 }
+
+/* 404 Page Not Found CSS  */
+#notFound {
+  position: relative;
+  height: calc(100vh - 100px);
+}
+#notFound .notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.notFound {
+  max-width: 900px;
+  width: 100%;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 15px;
+}
+.notFound .notFound-404 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100px;
+  transform: translate(-50%);
+  z-index: -1;
+}
+.notFound .notFound-404 h1 {
+  color: #ececec;
+  font-weight: 900;
+  font-size: 260px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.notFound h2 {
+  color: #000;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.notFound p {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+.notFound a {
+  text-decoration: none;
+  color: #fff;
+  background: #000;
+  padding: 15px 30px;
+  font-weight: 500;
+  border-radius: 999999px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: 0.3s all;
+}
+.notFound a:hover {
+  text-decoration: none;
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+}
+@media only screen and (max-width: 480px) {
+  .notFound .notFound-404 h1 {
+    font-size: 150px;
+  }
+  .notFound h2 {
+    font-size: 24px;
+  }
+}

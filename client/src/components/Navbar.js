@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <NavLink className="navbar-brand" to="/home">
+        <NavLink className="navbar-brand" to="/">
           <img src={logo} className="logo" alt="Atrives" />
         </NavLink>
         <button
@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/home">
+              <NavLink className="nav-link" to="/">
                 Home <span className="sr-only">(current)</span>
               </NavLink>
             </li>
