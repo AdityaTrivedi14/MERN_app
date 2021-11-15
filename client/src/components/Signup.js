@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Signup = () => {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
+
+  const handleInputs = (e) => {
+    e.preventDefault();
+    console.log(e);
+    name = e.target.name;
+    value = e.traget.value;
+    setUser({ ...user, [name]: value });
+  };
+
   return (
     <>
       <section className="signup">
@@ -18,6 +33,8 @@ const Signup = () => {
                 name="name"
                 id="name"
                 autoComplete="off"
+                value={user.name}
+                onChange={handleInputs}
                 placeholder="Your Name"
               />
             </div>
@@ -32,6 +49,8 @@ const Signup = () => {
                 name="email"
                 id="email"
                 autoComplete="off"
+                value={user.email}
+                onChange={handleInputs}
                 placeholder="Your Email"
               />
             </div>
@@ -46,6 +65,8 @@ const Signup = () => {
                 name="password"
                 id="password"
                 autoComplete="off"
+                value={user.password}
+                onChange={handleInputs}
                 placeholder="Your Password"
               />
             </div>
@@ -60,6 +81,8 @@ const Signup = () => {
                 name="cpassword"
                 id="cpassword"
                 autoComplete="off"
+                value={user.cpassword}
+                onChange={handleInputs}
                 placeholder="Confirm Password"
               />
             </div>
