@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -12,11 +13,39 @@ const Signup = () => {
   let name, value;
 
   const handleInputs = (e) => {
-    // e.preventDefault();
     console.log(e);
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+  };
+
+  const postData = async (e) => {
+    e.preventDefault();
+    const { name, email, password, cpassword } = user;
+
+    const res = await fetch("/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        cpassword,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.status === 422 || !data) {
+      window.alert("Invalid Registeration");
+      console.log("Invalid Registeration");
+    } else {
+      window.alert("Registeration Successfull");
+      console.log("Registeration Successfull");
+      navigate("/login");
+    }
   };
 
   return (
@@ -24,7 +53,7 @@ const Signup = () => {
       <section className="signup">
         <div className="signup-form text-center">
           <h2 className="form-title">Sign Up</h2>
-          <form className="registeration-form">
+          <form method="POST" className="registeration-form">
             <div className="form-group mb-3">
               <label htmlFor="name">
                 <i class="zmdi zmdi-account material-icons-name"></i>
@@ -96,6 +125,7 @@ const Signup = () => {
                 id="signup"
                 className="form-submit"
                 value="Create Account"
+                onClick={postData}
               />
             </div>
 
