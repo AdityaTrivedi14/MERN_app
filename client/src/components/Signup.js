@@ -9,11 +9,13 @@ const Signup = () => {
     cpassword: "",
   });
 
+  let name, value;
+
   const handleInputs = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(e);
     name = e.target.name;
-    value = e.traget.value;
+    value = e.target.value;
     setUser({ ...user, [name]: value });
   };
 
