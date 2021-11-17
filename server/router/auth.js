@@ -40,6 +40,7 @@ router.get("/", (req, res) => {
 
 // Async Await
 router.post("/register", async (req, res) => {
+  // res.set("Access-Control-Allow-Origin", "http://localhost:3000/signup");
   const { name, email, phone, password, cpassword } = req.body;
 
   if (!name || !email || !phone || !password || !cpassword) {

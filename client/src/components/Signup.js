@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -19,33 +20,44 @@ const Signup = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const postData = async (e) => {
+  // Using Fetch
+
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  //   const { name, email, password, cpassword } = user;
+
+  //   const res = await fetch("/register", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       name,
+  //       email,
+  //       password,
+  //       cpassword,
+  //     }),
+  //   });
+
+  //   const data = await res.json();
+
+  //   if (res.status === 422 || !data) {
+  //     window.alert("Invalid Registeration");
+  //     console.log("Invalid Registeration");
+  //   } else {
+  //     window.alert("Registeration Successfull");
+  //     console.log("Registeration Successfull");
+  //     navigate("/login");
+  //   }
+  // };
+
+  // Using Cors and Axios
+
+  const postData = (e) => {
     e.preventDefault();
-    const { name, email, password, cpassword } = user;
-
-    const res = await fetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        cpassword,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (res.status === 422 || !data) {
-      window.alert("Invalid Registeration");
-      console.log("Invalid Registeration");
-    } else {
-      window.alert("Registeration Successfull");
-      console.log("Registeration Successfull");
-      navigate("/login");
-    }
+    axios
+      .post("http://localhost:5000/register", user)
+      .then((res) => console.log(res.data));
   };
 
   return (
