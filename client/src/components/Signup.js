@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+// eslint-disable-next-line
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -14,7 +15,7 @@ const Signup = () => {
   let name, value;
 
   const handleInputs = (e) => {
-    console.log(e);
+    // console.log(e);
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
@@ -53,12 +54,39 @@ const Signup = () => {
 
   // Using Cors and Axios
 
-  const postData = (e) => {
+  const postData = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/register", user)
-      .then((res) => console.log(res.data));
+    // axios.post("http://localhost:5000/register", user).then((res) => {
+    // data: JSON.stringify({ name, email, password, cpassword});
+    // console.log(res.data);
+    // return res.data;
+    return await axios({
+      url: "http://localhost:5000/register",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify(user),
+    })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => console.log(err));
+    // });
   };
+
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  //   return await axios({
+  //     url: '/register',
+  //     method: 'POST'.
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-type': 'application/json',
+  //     }
+  //   })
+  // }
 
   return (
     <>

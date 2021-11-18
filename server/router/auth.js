@@ -2,12 +2,17 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const cors = require("cors");
 
 require("../db/conn");
 const User = require("../models/userSchema");
 
 router.get("/", (req, res) => {
   res.send("Hello World!!2");
+});
+
+router.get("/register", (req, res) => {
+  res.send("Hello from the register page");
 });
 
 // Promises
@@ -38,10 +43,21 @@ router.get("/", (req, res) => {
 //     .catch((err) => res.status(500).json({ message: "Failed to register" }));
 // });
 
+// using CORS
+router.use(cors({ origin: true }));
+router.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 // Async Await
 router.post("/register", async (req, res) => {
   // res.set("Access-Control-Allow-Origin", "http://localhost:3000/signup");
-  const { name, email, phone, password, cpassword } = req.body;
+  const { name, email, phone, password, cpassword } = req.data;
 
   if (!name || !email || !phone || !password || !cpassword) {
     return res.status(422).json({ error: "Fill all the required fields" });
