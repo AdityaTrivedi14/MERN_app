@@ -10,6 +10,7 @@ dotenv.config({ path: "./config.env" });
 require("./db/conn");
 // const User = require("./models/userSchema");
 
+app.use(cors());
 app.use(express.json());
 
 // linking routers with app.js

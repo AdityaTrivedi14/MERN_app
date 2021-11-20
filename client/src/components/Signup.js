@@ -8,6 +8,7 @@ const Signup = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
     cpassword: "",
   });
@@ -19,6 +20,20 @@ const Signup = () => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+  };
+
+  const postData = (event) => {
+    event.preventDefault();
+
+    const newUser = {
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      password: user.password,
+      cpassword: user.cpassword,
+    };
+
+    axios.post("http://localhost:5000/register", newUser);
   };
 
   // Using Fetch
@@ -54,27 +69,27 @@ const Signup = () => {
 
   // Using Cors and Axios
 
-  const postData = async (e) => {
-    e.preventDefault();
-    // axios.post("http://localhost:5000/register", user).then((res) => {
-    // data: JSON.stringify({ name, email, password, cpassword});
-    // console.log(res.data);
-    // return res.data;
-    return await axios({
-      url: "http://localhost:5000/register",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      data: JSON.stringify(user),
-    })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => console.log(err));
-    // });
-  };
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  // axios.post("http://localhost:5000/register", user).then((res) => {
+  // data: JSON.stringify({ name, email, password, cpassword});
+  // console.log(res.data);
+  // return res.data;
+  // return await axios({
+  //   url: "http://localhost:5000/register",
+  //   method: "POST",
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "application/json",
+  //   },
+  //   data: JSON.stringify(user),
+  // })
+  //   .then((response) => {
+  //     return response.data;
+  //   })
+  //   .catch((err) => console.log(err));
+  // });
+  // };
 
   // const postData = async (e) => {
   //   e.preventDefault();
@@ -123,6 +138,22 @@ const Signup = () => {
                 value={user.email}
                 onChange={handleInputs}
                 placeholder="Your Email"
+              />
+            </div>
+
+            <div className="form-group mb-3">
+              <label htmlFor="phone">
+                <i class="zmdi zmdi-phone material-icons-name"></i>
+              </label>
+              <input
+                className="myInput"
+                type="phone"
+                name="phone"
+                id="phone"
+                autoComplete="off"
+                value={user.phone}
+                onChange={handleInputs}
+                placeholder="Your Phone"
               />
             </div>
 
