@@ -1,13 +1,36 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginUser = (event) => {
+    event.preventDefault();
+
+    const user = { email, password };
+
+    axios.post("http://localhost:5000/login", user).then((res) => {
+      if (res.status === 400) {
+        window.alert("Invalid Registeration");
+        console.log("Invalid Registeration");
+      } else {
+        window.alert("Login Successfull");
+        console.log("Login Successfull");
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <>
       <section className="signin">
         <div className="signin-form text-center">
           <h2 className="form-title">Login</h2>
-          <form className="login-form">
+          <form method="POST" className="login-form">
             <div className="form-group mb-3">
               <label htmlFor="email">
                 <i class="zmdi zmdi-email material-icons-name"></i>
@@ -18,6 +41,8 @@ const Login = () => {
                 name="email"
                 id="email"
                 autoComplete="off"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your Email"
               />
             </div>
@@ -32,6 +57,8 @@ const Login = () => {
                 name="password"
                 id="password"
                 autoComplete="off"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Your Password"
               />
             </div>
@@ -43,6 +70,7 @@ const Login = () => {
                 id="signin"
                 className="form-submit"
                 value="Log In"
+                onClick={loginUser}
               />
             </div>
 

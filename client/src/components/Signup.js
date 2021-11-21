@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// eslint-disable-next-line
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -24,7 +23,6 @@ const Signup = () => {
 
   const postData = (event) => {
     event.preventDefault();
-    // navigate("http://locahost:3000/login");
 
     const newUser = {
       name: user.name,
