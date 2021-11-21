@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -24,6 +24,7 @@ const Signup = () => {
 
   const postData = (event) => {
     event.preventDefault();
+    // navigate("http://locahost:3000/login");
 
     const newUser = {
       name: user.name,
@@ -33,8 +34,31 @@ const Signup = () => {
       cpassword: user.cpassword,
     };
 
-    axios.post("http://localhost:5000/register", newUser);
+    axios.post("http://localhost:5000/register", newUser).then((res) => {
+      if (res.status === 422) {
+        window.alert("Invalid Registeration");
+        console.log("Invalid Registeration");
+      } else {
+        window.alert("Registeration Successfull");
+        console.log("Registeration Successfull");
+        navigate("/login");
+      }
+    });
   };
+
+  // const postData = (event) => {
+  //   event.preventDefault();
+
+  //   const newUser = {
+  //     name: user.name,
+  //     email: user.email,
+  //     phone: user.phone,
+  //     password: user.password,
+  //     cpassword: user.cpassword,
+  //   };
+
+  //   axios.post("http://localhost:5000/register", newUser);
+  // };
 
   // Using Fetch
 
