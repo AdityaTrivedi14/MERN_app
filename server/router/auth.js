@@ -44,9 +44,9 @@ router.get("/register", (req, res) => {
 // });
 
 // using CORS
-router.use(cors({ origin: true }));
+router.use(cors({ origin: "http://localhost:3000", credentials: true }));
 router.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
 
       const token = await userLogin.generateAuthToken();
 
-      console.log(token);
+      // console.log(token);
 
       res.cookie("jwtoken", token, {
         expires: new Date(Date.now() + 25892000000),

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
+
+// axios.defaults.withCredentials = true;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,16 +15,20 @@ const Login = () => {
 
     const user = { email, password };
 
-    axios.post("http://localhost:5000/login", user).then((res) => {
-      if (res.status === 400) {
-        window.alert("Invalid Registeration");
-        console.log("Invalid Registeration");
-      } else {
-        window.alert("Login Successfull");
-        console.log("Login Successfull");
-        navigate("/");
-      }
-    });
+    axios
+      .post("http://localhost:5000/login", user, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.status === 400) {
+          window.alert("Invalid Registeration");
+          console.log("Invalid Registeration");
+        } else {
+          window.alert("Login Successfull");
+          console.log("Login Successfull");
+          navigate("/");
+        }
+      });
   };
 
   return (
