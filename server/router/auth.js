@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const cookieParser = require("cookie-parser");
 const authenticate = require("../middleware/authenticate");
 const cors = require("cors");
 
@@ -44,6 +45,8 @@ router.get("/register", (req, res) => {
 //     .catch((err) => res.status(500).json({ message: "Failed to register" }));
 // });
 
+// Parsing Cookie i.e. jwtoken in authenticate middleware suing cookie parser
+router.use(cookieParser());
 // using CORS
 router.use(cors({ origin: "http://localhost:3000", credentials: true }));
 router.use(function (req, res, next) {

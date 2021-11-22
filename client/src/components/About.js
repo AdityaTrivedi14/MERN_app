@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import profilePic from "../images/profile.png";
 
 const About = () => {
+  const callAboutPage = () => {
+    axios.get("http://localhost:5000/about", { withCredentials: true });
+  };
+
+  useEffect(() => {
+    callAboutPage();
+  }, []);
+
   return (
     <>
       <div className="container profileCard">
-        <form method="">
+        <form method="GET">
           <div className="row">
             <div className="col-md-4">
               <img src={profilePic} className="profilePic" alt="Profile Pic" />
