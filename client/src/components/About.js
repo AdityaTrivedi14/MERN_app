@@ -1,14 +1,26 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import profilePic from "../images/profile.png";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
   const callAboutPage = () => {
-    axios.get("http://localhost:5000/about", { withCredentials: true });
+    axios
+      .get("http://localhost:5000/about", { withCredentials: true })
+      .then((res) => {
+        if (res.status === 401) {
+          console.log("JWT token not verified");
+          navigate("/login");
+        } else {
+          console.log("Token Passed successfully");
+        }
+      });
   };
 
   useEffect(() => {
     callAboutPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
