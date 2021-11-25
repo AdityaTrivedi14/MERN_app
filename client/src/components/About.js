@@ -5,21 +5,31 @@ import { useNavigate } from "react-router-dom";
 
 const About = () => {
   const navigate = useNavigate();
-  const callAboutPage = () => {
+  // const callAboutPage = () => {
+  //   axios
+  //     .get("http://localhost:5000/about", { withCredentials: true })
+  //     .then((res) => {
+  //       if (res.status === 401) {
+  //         console.log("JWT token not verified");
+  //         navigate("/login");
+  //       } else {
+  //         console.log("Token Passed successfully");
+  //       }
+  //     });
+  // };
+
+  useEffect(() => {
+    // callAboutPage();
     axios
       .get("http://localhost:5000/about", { withCredentials: true })
       .then((res) => {
-        if (res.status === 401) {
+        if (res.status !== 200) {
           console.log("JWT token not verified");
           navigate("/login");
         } else {
           console.log("Token Passed successfully");
         }
       });
-  };
-
-  useEffect(() => {
-    callAboutPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
