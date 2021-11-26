@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Contact = () => {
+  const [userData, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/about", { withCredentials: true })
+      .then((res) => {
+        console.log("Token Passed successfully");
+        const myData = res.data;
+        setData(myData);
+      })
+      .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div className="contactInfo">
@@ -59,6 +74,7 @@ const Contact = () => {
                       type="text"
                       id="contactForm-name"
                       className="contactForm-name contactInput"
+                      value={userData.name}
                       placeholder="Name"
                       required="true"
                     />
@@ -66,7 +82,16 @@ const Contact = () => {
                       type="email"
                       id="contactForm-email"
                       className="contactForm-email contactInput"
+                      value={userData.email}
                       placeholder="Email"
+                      required="true"
+                    />
+                    <input
+                      type="phone"
+                      id="contactForm-phone"
+                      className="contactForm-phone contactInput"
+                      value={userData.phone}
+                      placeholder="Phone"
                       required="true"
                     />
                   </div>
