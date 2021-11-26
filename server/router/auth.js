@@ -124,4 +124,32 @@ router.get("/about", authenticate, (req, res) => {
   res.send(req.rootUser);
 });
 
+router.post("/contact", authenticate, async (req, res) => {
+  try {
+    const { name, email, phone, message } = req.body;
+
+    if (!name || !email || !phone || !message) {
+      console.log("Error in contact details");
+      return res.json({ error: "Form not filled" });
+    }
+
+    const userContact = await User.findOne({ _id: req.userID });
+
+    if (userContact) {
+      const userMessage = await userMessage.addMessage(
+        name,
+        email,
+        phone,
+        message
+      );
+
+      await userContact.save();
+
+      res.status(201).json({ message: "Contact Message Submitted" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;

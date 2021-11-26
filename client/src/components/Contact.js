@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Contact = () => {
-  const [userData, setData] = useState([]);
+  const [userData, setData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
   useEffect(() => {
     axios
@@ -10,11 +15,55 @@ const Contact = () => {
       .then((res) => {
         console.log("Token Passed successfully");
         const myData = res.data;
-        setData(myData);
+        setData({
+          ...userData,
+          name: myData.name,
+          email: myData.email,
+          phone: myData.phone,
+        });
       })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  let name, value;
+
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+
+    setData({ ...userData, [name]: value });
+  };
+
+  const contactData = (event) => {
+    event.preventDefault();
+
+    const updateData = {
+      name: userData.name,
+      email: userData.email,
+      phone: userData.phone,
+      message: userData.message,
+    };
+
+    // axios
+    //   .post("http://localhost:5000/contact", updateData)
+    //   .then((res) => {
+    //     window.alert("Message Submitted");
+    //     console.log("Message Submitted");
+    //     setData({ ...userData, message: "" });
+    //   })
+    //   .catch((err) => console.log(err));
+
+    axios.post("http://localhost:5000/contact", updateData).then((res) => {
+      if (res.status === 401) {
+        window.alert("Invalid Registeration");
+        console.log("Invalid Registeration");
+      } else {
+        window.alert("Message Submitted");
+        console.log("Message Submitted");
+      }
+    });
+  };
 
   return (
     <>
@@ -68,12 +117,14 @@ const Contact = () => {
             <div className="col-8 offset-2">
               <div className="contactForm-container">
                 <div className="contactForm-title">Get in touch</div>
-                <form id="contactForm">
+                <form method="POST" id="contactForm">
                   <div className="contactForm-content">
                     <input
                       type="text"
                       id="contactForm-name"
                       className="contactForm-name contactInput"
+                      name="name"
+                      onChange={handleInputs}
                       value={userData.name}
                       placeholder="Name"
                       required="true"
@@ -82,6 +133,8 @@ const Contact = () => {
                       type="email"
                       id="contactForm-email"
                       className="contactForm-email contactInput"
+                      name="email"
+                      onChange={handleInputs}
                       value={userData.email}
                       placeholder="Email"
                       required="true"
@@ -90,6 +143,8 @@ const Contact = () => {
                       type="phone"
                       id="contactForm-phone"
                       className="contactForm-phone contactInput"
+                      name="phone"
+                      onChange={handleInputs}
                       value={userData.phone}
                       placeholder="Phone"
                       required="true"
@@ -97,15 +152,21 @@ const Contact = () => {
                   </div>
                   <div className="contactMessage mt-1">
                     <textarea
-                      name="text-field form-message"
                       id="contactMessage"
                       cols="30"
                       rows="5"
+                      name="message"
+                      onChange={handleInputs}
+                      value={userData.message}
                       placeholder="Message"
                     ></textarea>
                   </div>
                   <div className="contactButton">
-                    <button type="submit" className="button contactSubmit">
+                    <button
+                      type="submit"
+                      className="button contactSubmit"
+                      onClick={contactData}
+                    >
                       Send Message
                     </button>
                   </div>
