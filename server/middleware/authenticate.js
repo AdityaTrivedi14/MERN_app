@@ -22,7 +22,6 @@ const authenticate = async (req, res, next) => {
     next();
   } catch (err) {
     res.status(401).send("Unathorized token: No token provided");
-    // res.redirect("/http://localhost:3000/login");
     console.log(err);
   }
 };

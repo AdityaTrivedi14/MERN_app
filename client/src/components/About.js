@@ -22,14 +22,11 @@ const About = () => {
     // callAboutPage();
     axios
       .get("http://localhost:5000/about", { withCredentials: true })
-      .then((res) => {
-        if (res.status !== 200) {
-          console.log("JWT token not verified");
-          navigate("/login");
-        } else {
-          console.log("Token Passed successfully");
-        }
-      });
+      .then((response) => {
+        console.log("Token Passed successfully");
+      })
+      .catch((err) => navigate("/login"));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
