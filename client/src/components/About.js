@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import profilePic from "../images/profile.png";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
   const navigate = useNavigate();
+  const [userData, setData] = useState([]);
   // const callAboutPage = () => {
   //   axios
   //     .get("http://localhost:5000/about", { withCredentials: true })
@@ -22,11 +23,12 @@ const About = () => {
     // callAboutPage();
     axios
       .get("http://localhost:5000/about", { withCredentials: true })
-      .then((response) => {
+      .then((res) => {
         console.log("Token Passed successfully");
+        const myData = res.data;
+        setData(myData);
       })
       .catch((err) => navigate("/login"));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -40,7 +42,7 @@ const About = () => {
             </div>
             <div className="col-md-6">
               <div className="profileHead">
-                <h5>Aditya Trivedi</h5>
+                <h5>{userData.name}</h5>
                 <h6>Web Developer</h6>
 
                 <ul class="nav nav-tabs">
@@ -88,7 +90,7 @@ const About = () => {
                   rel="noopener noreferrer"
                 >
                   Youtube
-                </a>{" "}
+                </a>
                 <br />
                 <a
                   href="https://github.com/AdityaTrivedi14"
@@ -137,7 +139,7 @@ const About = () => {
                       <label>User Id</label>
                     </div>
                     <div className="col-md-6">
-                      <p>594380398675409780</p>
+                      <p>{userData._id}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -145,7 +147,7 @@ const About = () => {
                       <label>Name</label>
                     </div>
                     <div className="col-md-6">
-                      <p>Aditya</p>
+                      <p>{userData.name}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -153,15 +155,15 @@ const About = () => {
                       <label>Email</label>
                     </div>
                     <div className="col-md-6">
-                      <p>adityakuldeeptrivedi@gmail.com</p>
+                      <p>{userData.email}</p>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-md-6">
-                      <label>Profession</label>
+                      <label>Phone</label>
                     </div>
                     <div className="col-md-6">
-                      <p>Web Developer</p>
+                      <p>{userData.phone}</p>
                     </div>
                   </div>
                 </div>
@@ -184,7 +186,7 @@ const About = () => {
                       <label>Name</label>
                     </div>
                     <div className="col-md-6">
-                      <p>Aditya</p>
+                      <p>{userData.name}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -192,7 +194,7 @@ const About = () => {
                       <label>Email</label>
                     </div>
                     <div className="col-md-6">
-                      <p>adityakuldeeptrivedi@gmail.com</p>
+                      <p>{userData.email}</p>
                     </div>
                   </div>
                   <div className="row">
