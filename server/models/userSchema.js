@@ -65,6 +65,17 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+// Storing Message
+userSchema.methods.addMessage = async function (name, email, phone, message) {
+  try {
+    this.messages = this.messages.concat({ name, email, phone, message });
+    await this.save();
+    return this.messages;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // generating token using jwt
 userSchema.methods.generateAuthToken = async function () {
   try {
@@ -72,17 +83,6 @@ userSchema.methods.generateAuthToken = async function () {
     this.tokens = this.tokens.concat({ token: token });
     await this.save();
     return token;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// Storing Message
-userSchema.methods.addMessage = async function (name, email, phone, message) {
-  try {
-    this.messages = this.messages.concat({ name, email, phone, message });
-    await this.save();
-    return this.messages;
   } catch (err) {
     console.log(err);
   }

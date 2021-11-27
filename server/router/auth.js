@@ -136,7 +136,7 @@ router.post("/contact", authenticate, async (req, res) => {
     const userContact = await User.findOne({ _id: req.userID });
 
     if (userContact) {
-      const userMessage = await userMessage.addMessage(
+      const userMessage = await userContact.addMessage(
         name,
         email,
         phone,

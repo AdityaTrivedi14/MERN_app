@@ -45,24 +45,26 @@ const Contact = () => {
       message: userData.message,
     };
 
-    // axios
-    //   .post("http://localhost:5000/contact", updateData)
-    //   .then((res) => {
+    axios
+      .post("http://localhost:5000/contact", updateData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        window.alert("Message Submitted");
+        console.log(res.data);
+        setData({ ...userData, message: "" });
+      })
+      .catch((err) => console.log(err));
+
+    // axios.post("http://localhost:5000/contact", updateData).then((res) => {
+    //   if (res.status === 401) {
+    //     window.alert("Invalid Registeration");
+    //     console.log("Invalid Registeration");
+    //   } else {
     //     window.alert("Message Submitted");
     //     console.log("Message Submitted");
-    //     setData({ ...userData, message: "" });
-    //   })
-    //   .catch((err) => console.log(err));
-
-    axios.post("http://localhost:5000/contact", updateData).then((res) => {
-      if (res.status === 401) {
-        window.alert("Invalid Registeration");
-        console.log("Invalid Registeration");
-      } else {
-        window.alert("Message Submitted");
-        console.log("Message Submitted");
-      }
-    });
+    //   }
+    // });
   };
 
   return (
