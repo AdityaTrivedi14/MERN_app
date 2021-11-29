@@ -4,6 +4,7 @@ import axios from "axios";
 import { UserContext } from "../App";
 
 const Logout = () => {
+  // eslint-disable-next-line
   const { state, dispatch } = useContext(UserContext);
 
   const navigate = useNavigate();

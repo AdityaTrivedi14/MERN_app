@@ -5,6 +5,7 @@ import logo from "../images/Logo.svg";
 import { UserContext } from "../App";
 
 const Navbar = () => {
+  // eslint-disable-next-line
   const { state, dispatch } = useContext(UserContext);
 
   const RenderMenu = () => {
