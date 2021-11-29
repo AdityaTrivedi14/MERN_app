@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { UserContext } from "../App";
 
 const Logout = () => {
+  const { state, dispatch } = useContext(UserContext);
+
   const navigate = useNavigate();
   useEffect(() => {
     // callAboutPage();
     axios
       .get("http://localhost:5000/logout", { withCredentials: true })
       .then((res) => {
+        dispatch({ type: "USER", payload: false });
         console.log("Token Passed successfully");
         navigate("/login");
       })

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import { UserContext } from "../App";
 // axios.defaults.withCredentials = true;
 
 const Login = () => {
+  const { state, dispatch } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -24,6 +26,7 @@ const Login = () => {
           window.alert("Invalid Registeration");
           console.log("Invalid Registeration");
         } else {
+          dispatch({ type: "USER", payload: true });
           window.alert("Login Successfull");
           console.log("Login Successfull");
           navigate("/");
